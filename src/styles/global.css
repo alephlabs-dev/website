@@ -1,0 +1,181 @@
+/* ============================================================
+   Aleph Labs — global styles
+   Tokens and rules transcribed from the brand direction doc:
+   two saturated surfaces that snap against each other, a hard
+   structural spine, engineering type. No boxes, no cream.
+   ============================================================ */
+
+:root {
+  /* Surfaces */
+  --ink: #0a0c0f;
+  --graphite: #14171c;
+  --ultramarine: #2229de;
+  --citron: #d9f25c;
+  --plaster: #eaebe5;
+
+  /* Text on ink / on plaster / on ultramarine */
+  --on-ink: #eaebe5;
+  --on-plaster: #0a0c0f;
+  --on-ultramarine: #f5f5f0;
+
+  /* Secondary text — the only two greys allowed */
+  --steel: #8a9099;
+  --slate: #565c64;
+
+  /* Hairlines */
+  --rule-ink: #23272c;
+  --rule-plaster: #c9cac4;
+
+  /* Muted body copy on each surface */
+  --body-ink: #c8cbc4;
+  --body-plaster: #35393e;
+  --dim-ink: #a9aea8;
+
+  --font-sans: 'Archivo', Helvetica, sans-serif;
+  --font-mono: 'Martian Mono', ui-monospace, monospace;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+img,
+canvas {
+  max-width: 100%;
+}
+
+/* Per-page theming: the layout sets data-theme on <html>. */
+:root[data-theme='dark'] body {
+  background: var(--ink);
+  color: var(--on-ink);
+}
+:root[data-theme='light'] body {
+  background: var(--plaster);
+  color: var(--on-plaster);
+}
+:root[data-theme='dark'] a:hover {
+  color: var(--citron);
+}
+:root[data-theme='light'] a:hover {
+  color: var(--ultramarine);
+}
+
+/* ---- Type roles ---------------------------------------------------- */
+.mono {
+  font-family: var(--font-mono);
+}
+.eyebrow {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+/* ---- Structural spine (the one vertical rule on the site) ---------- */
+.spine {
+  background: linear-gradient(180deg, var(--rule-ink), rgba(35, 39, 44, 0));
+  position: relative;
+}
+
+/* ---- Bracket CTA --------------------------------------------------- */
+.cta {
+  font-family: var(--font-mono);
+  font-size: 14px;
+  letter-spacing: 0.04em;
+  padding: 18px 26px;
+  display: inline-block;
+  transition: background 0.25s ease, color 0.25s ease;
+}
+.cta--citron {
+  background: var(--citron);
+  color: var(--ink);
+}
+
+/* ---- Film grain: 4% monochrome noise, fixed to the viewport,
+   only mounted on ink (dark) pages. Never scrolls with content. --- */
+.grain {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  pointer-events: none;
+  opacity: 0.04;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* ============================================================
+   Motion — see scripts/motion.ts. Elements start hidden and are
+   revealed by GSAP; if JS never runs, the no-js fallback below
+   makes everything visible so content is never lost.
+   ============================================================ */
+
+/* Per-line clip reveal for display headings. */
+.reveal-lines .line-inner {
+  display: block;
+  transform: translateY(110%);
+  will-change: transform;
+}
+.reveal-lines .line-mask {
+  display: block;
+  overflow: hidden;
+}
+
+/* Fade-and-rise for blocks. */
+[data-reveal] {
+  opacity: 0;
+  transform: translateY(24px);
+  will-change: transform, opacity;
+}
+
+html.no-js [data-reveal],
+html.no-js .reveal-lines .line-inner {
+  opacity: 1 !important;
+  transform: none !important;
+}
+
+/* ---- Work index: rows dim to a resting opacity; the active row goes
+   full and its number+name slide 12px right (expo.out, 0.35s). -------- */
+[data-work-row] {
+  transition: opacity 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+[data-work-row][data-active='false'] {
+  opacity: var(--dim, 0.32);
+}
+[data-work-row][data-active='true'] {
+  opacity: 1;
+}
+[data-work-row] [data-shift] {
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+[data-work-row][data-active='true'] [data-shift] {
+  transform: translateX(12px);
+}
+[data-work-row][data-active='false'] [data-status] {
+  color: var(--slate);
+}
+[data-work-row][data-active='true'] [data-status][data-live='true'] {
+  color: var(--citron);
+}
+[data-work-row][data-active='true'] [data-status][data-live='false'] {
+  color: var(--steel);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  [data-reveal],
+  .reveal-lines .line-inner {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+}

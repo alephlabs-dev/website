@@ -1,0 +1,439 @@
+---
+import Base from '../layouts/Base.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+
+const CAL = 'https://cal.com/alephlabs';
+
+const track = [
+  { bar: 'var(--rule-ink)', k: 'Roots', title: 'Engineering, then code', body: 'Formal engineering training, and a self-taught detour into software that turned into the career.' },
+  { bar: 'var(--ultramarine)', k: 'Italy · Spain', title: 'Startups, 10 people', body: 'Small teams where you own a feature end to end: database, backend, interface, deploy, support call.' },
+  { bar: 'var(--ultramarine)', k: 'Copenhagen', title: 'Scale, 200+ people', body: 'Customer-facing products at volume, and the discipline that comes with software other people depend on.' },
+  { bar: 'var(--citron)', k: 'Last 3 years', title: 'Applied AI', body: "Inside a company built entirely on it. Long enough to know where it works, and where it's expensive theatre." },
+  { bar: 'var(--citron)', k: '2026 →', title: 'Aleph Labs', body: 'Buenos Aires, clients worldwide. Small businesses that need real software and a straight answer.' },
+];
+
+const principles = [
+  { label: 'Engineering first', body: 'AI is a tool we apply where it earns its place. The foundation is software built properly.' },
+  { label: 'Direct, not layered', body: 'You work with the person writing the code. No account managers, no handoffs, no telephone game.' },
+  { label: 'The real problem', body: "Sometimes the feature you asked for isn't the fix. We'll say so, with the reasoning, before building it." },
+  { label: 'Built to last', body: 'Documented, tested, with your history intact and real support after launch. Not a prototype dressed as a product.' },
+];
+
+const hobbies = ['snowboarding', 'surfing', 'tennis', 'climbing', 'guitar', 'books', 'near the sea'];
+---
+
+<Base title="About — Aleph Labs" theme="light">
+  <Header active="about" theme="light" />
+
+  <!-- ── Intro ──────────────────────────────────────────────── -->
+  <section class="intro">
+    <div class="wrap intro-wrap">
+      <div class="intro-copy">
+        <div class="eyebrow muted">About · who you'd be working with</div>
+        <h1 class="intro-h1 reveal-lines">
+          <span class="line-mask"><span class="line-inner">A studio of</span></span>
+          <span class="line-mask"><span class="line-inner">engineers first.</span></span>
+        </h1>
+        <div class="intro-paras">
+          <p data-reveal>Aleph Labs came out of a habit rather than a business plan: a pull towards maths, logic and problems that resist being solved neatly. Engineering degrees, then code taught in the free hours — until code won.</p>
+          <p data-reveal>Behind the studio sits eight years of professional software engineering, across ten-person startups and 200-person organisations, in Italy, Spain and Denmark — mostly Copenhagen — in a range of roles. The last three of those years were spent deep in applied AI, inside a company built around it.</p>
+        </div>
+        <p class="intro-wide" data-reveal>Years on customer-facing products left one habit that shows up in every project: understand the user's actual problem before writing code — not the platform's problem, and not the feature exactly as it was requested. The studio is based in Buenos Aires and works with clients worldwide.</p>
+      </div>
+
+      <div class="intro-side">
+        <div class="ph ph-portrait">
+          <div class="ph-scan ph-scan--v"></div>
+          <div class="ph-cap">[ photograph · natural light — at the desk, or on a client's workshop floor ]</div>
+        </div>
+        <div class="side-meta">
+          <div class="side-strong">Buenos Aires, Argentina · GMT−3</div>
+          <div>Available worldwide, fully remote</div>
+          <div>Spanish · English · Italian</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Track record ───────────────────────────────────────── -->
+  <section class="track">
+    <div class="wrap section-col">
+      <div class="sec-head">
+        <div class="eyebrow muted-ink">01 / Track record</div>
+        <h2 class="sec-title">Eight years, three countries, one habit</h2>
+      </div>
+      <div class="track-grid">
+        {
+          track.map((t) => (
+            <div class="tr" data-reveal>
+              <div class="tr-bar" style={`background:${t.bar}`} />
+              <div class="eyebrow tr-k">{t.k}</div>
+              <div class="tr-title">{t.title}</div>
+              <p class="tr-body">{t.body}</p>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Principles ─────────────────────────────────────────── -->
+  <section class="principles">
+    <div class="wrap principles-wrap">
+      <div class="eyebrow pr-index">02 / How we work</div>
+      <div class="pr-body">
+        <h2 class="pr-h2 reveal-lines">
+          <span class="line-mask"><span class="line-inner">Four principles, and we'll hold</span></span>
+          <span class="line-mask"><span class="line-inner">ourselves to them out loud.</span></span>
+        </h2>
+        <div class="pr-grid">
+          {
+            principles.map((p) => (
+              <div class="pr" data-reveal>
+                <div class="eyebrow pr-label">{p.label}</div>
+                <p class="pr-p">{p.body}</p>
+              </div>
+            ))
+          }
+        </div>
+        <div class="hobbies">
+          <span>Off the clock:</span>
+          {hobbies.map((h) => <span>{h}</span>)}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Contact ────────────────────────────────────────────── -->
+  <section class="contact">
+    <div class="wrap section-col">
+      <div class="sec-head">
+        <div class="eyebrow muted-ink">03 / Contact</div>
+        <h2 class="sec-title">Two ways in. Both reach us directly.</h2>
+      </div>
+
+      <a href="mailto:nacho@alephlabs.dev" class="big-email">nacho@alephlabs.dev</a>
+
+      <div class="contact-grid">
+        <div class="contact-cta" data-reveal>
+          <p class="contact-copy">Or skip the email thread entirely and take thirty minutes. Bring the spreadsheet.</p>
+          <a href={CAL} class="cta cta--citron contact-book">[ Book a call ]</a>
+        </div>
+        <div class="contact-col">
+          <div class="cc-strong">Response time</div>
+          <div>Within one business day</div>
+          <div class="cc-strong cc-gap">Working hours</div>
+          <div>09:00–19:00 GMT−3 · flexible for EU &amp; US calls</div>
+        </div>
+        <div class="contact-col">
+          <div class="cc-strong">Elsewhere</div>
+          <a href="https://www.linkedin.com/">LinkedIn</a>
+          <a href="https://github.com/">GitHub</a>
+          <div class="cc-clock">Buenos Aires <span data-clock>--:--:--</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <Footer
+    links={[
+      { href: '/', label: 'Home' },
+      { href: '/services', label: 'Services' },
+      { href: '/work', label: 'Work' },
+    ]}
+    showClock={false}
+    padTop={20}
+  />
+</Base>
+
+<style>
+  .wrap {
+    max-width: 1780px;
+  }
+  .muted {
+    color: #6b7178;
+  }
+  .muted-ink {
+    color: var(--steel);
+  }
+  .section-col {
+    display: flex;
+    flex-direction: column;
+    gap: clamp(40px, 5vw, 76px);
+  }
+  .sec-head {
+    display: flex;
+    align-items: baseline;
+    gap: 24px;
+    flex-wrap: wrap;
+  }
+  .sec-title {
+    margin: 0;
+    font-size: clamp(26px, 3vw, 46px);
+    line-height: 1;
+    letter-spacing: -0.03em;
+    font-variation-settings: 'wght' 750, 'wdth' 105;
+  }
+
+  /* Image placeholder (client-context photography drops in here). */
+  .ph {
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: flex-end;
+    padding: 18px;
+    background: #dcddd6;
+  }
+  .ph-portrait {
+    aspect-ratio: 3 / 4;
+  }
+  .ph-scan {
+    position: absolute;
+    inset: 0;
+  }
+  .ph-scan--v {
+    background: repeating-linear-gradient(90deg, rgba(10, 12, 15, 0.13) 0 1px, transparent 1px 8px);
+  }
+  .ph-cap {
+    position: relative;
+    font-family: var(--font-mono);
+    font-size: 10.5px;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: #4a4f55;
+  }
+
+  /* ---- Intro ---- */
+  .intro {
+    padding: clamp(44px, 5vw, 90px) clamp(18px, 3vw, 32px) clamp(56px, 7vw, 110px);
+  }
+  .intro-wrap {
+    display: flex;
+    flex-wrap: wrap;
+    gap: clamp(32px, 4vw, 80px);
+    align-items: start;
+  }
+  .intro-copy {
+    flex: 1 1 460px;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: clamp(28px, 3.4vw, 48px);
+  }
+  .intro-h1 {
+    margin: 0;
+    font-size: clamp(34px, 6.6vw, 118px);
+    line-height: 0.84;
+    letter-spacing: -0.042em;
+    font-variation-settings: 'wght' 820, 'wdth' 114;
+  }
+  .intro-paras {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 28px 52px;
+    max-width: 1080px;
+  }
+  .intro-paras p {
+    margin: 0;
+    font-size: clamp(17px, 1.3vw, 21px);
+    line-height: 1.45;
+    color: var(--body-plaster);
+  }
+  .intro-paras p:nth-child(2) {
+    font-size: 17px;
+    line-height: 1.5;
+  }
+  .intro-wide {
+    margin: 0;
+    font-size: 17px;
+    line-height: 1.5;
+    color: var(--body-plaster);
+    max-width: 66ch;
+  }
+  .intro-side {
+    flex: 1 1 280px;
+    max-width: 440px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  .side-meta {
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+    font-family: var(--font-mono);
+    font-size: 11.5px;
+    line-height: 1.7;
+    color: #6b7178;
+  }
+  .side-strong {
+    color: var(--on-plaster);
+  }
+
+  /* ---- Track record (ink) ---- */
+  .track {
+    background: var(--ink);
+    color: var(--on-ink);
+    padding: clamp(72px, 9vw, 130px) clamp(18px, 3vw, 32px);
+  }
+  .track-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+    gap: clamp(28px, 3vw, 52px);
+  }
+  .tr {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+  .tr-bar {
+    height: 3px;
+  }
+  .tr-k {
+    color: var(--slate);
+    font-size: 11px;
+    letter-spacing: 0.05em;
+  }
+  .tr-title {
+    font-size: clamp(21px, 2vw, 30px);
+    line-height: 1;
+    letter-spacing: -0.03em;
+    font-variation-settings: 'wght' 780, 'wdth' 108;
+  }
+  .tr-body {
+    margin: 0;
+    font-size: 16px;
+    line-height: 1.55;
+    color: var(--dim-ink);
+  }
+
+  /* ---- Principles (ultramarine) ---- */
+  .principles {
+    background: var(--ultramarine);
+    color: var(--on-ultramarine);
+    padding: clamp(72px, 9vw, 140px) clamp(18px, 3vw, 32px);
+  }
+  .principles-wrap {
+    display: flex;
+    flex-wrap: wrap;
+    gap: clamp(24px, 4vw, 80px);
+    align-items: start;
+  }
+  .pr-index {
+    opacity: 0.72;
+    padding-top: 14px;
+    flex: 0 1 150px;
+  }
+  .pr-body {
+    flex: 1 1 460px;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: clamp(36px, 4vw, 60px);
+  }
+  .pr-h2 {
+    margin: 0;
+    font-size: clamp(30px, 4.6vw, 78px);
+    line-height: 0.92;
+    letter-spacing: -0.035em;
+    font-variation-settings: 'wght' 800, 'wdth' 110;
+    max-width: 22ch;
+  }
+  .pr-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 36px 56px;
+  }
+  .pr {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .pr-label {
+    opacity: 0.72;
+    font-size: 11px;
+    letter-spacing: 0.05em;
+  }
+  .pr-p {
+    margin: 0;
+    font-size: 17px;
+    line-height: 1.5;
+  }
+  .hobbies {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px 32px;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    opacity: 0.75;
+  }
+
+  /* ---- Contact (ink) ---- */
+  .contact {
+    background: var(--ink);
+    color: var(--on-ink);
+    padding: clamp(76px, 9vw, 140px) clamp(18px, 3vw, 32px) clamp(60px, 7vw, 100px);
+  }
+  .big-email {
+    display: block;
+    font-size: clamp(22px, 6.6vw, 118px);
+    line-height: 0.9;
+    letter-spacing: -0.045em;
+    font-variation-settings: 'wght' 820, 'wdth' 112;
+    word-break: break-word;
+    border-top: 1px solid var(--rule-ink);
+    border-bottom: 1px solid var(--rule-ink);
+    padding: clamp(24px, 3vw, 44px) 0;
+  }
+  .big-email:hover {
+    color: var(--citron);
+  }
+  .contact-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: clamp(28px, 3vw, 56px);
+    align-items: start;
+  }
+  .contact-cta {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    align-items: flex-start;
+  }
+  .contact-copy {
+    margin: 0;
+    font-size: 17.5px;
+    line-height: 1.5;
+    color: var(--dim-ink);
+    max-width: 40ch;
+  }
+  .contact-book {
+    color: var(--ink);
+  }
+  .cta--citron:hover {
+    background: var(--on-ink);
+    color: var(--ink);
+  }
+  .contact-col {
+    display: flex;
+    flex-direction: column;
+    gap: 9px;
+    font-family: var(--font-mono);
+    font-size: 12px;
+    line-height: 1.7;
+    color: var(--steel);
+  }
+  .cc-strong {
+    color: var(--on-ink);
+  }
+  .cc-gap {
+    padding-top: 10px;
+  }
+  .cc-clock {
+    color: var(--slate);
+    padding-top: 10px;
+  }
+</style>

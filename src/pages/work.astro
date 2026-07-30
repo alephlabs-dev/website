@@ -1,0 +1,465 @@
+---
+import Base from '../layouts/Base.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+
+const CAL = 'https://cal.com/alephlabs';
+
+interface WorkItem {
+  num: string;
+  name: string;
+  tag: string;
+  status: string;
+  live: boolean;
+  image: string;
+  blurb: string;
+  scope: string[];
+}
+
+const items: WorkItem[] = [
+  {
+    num: '01', name: 'Estudio Nuestro', tag: 'Furniture studio · Operations platform',
+    status: 'In progress', live: true, image: 'workshop photo / budget builder screen',
+    blurb: 'An entire studio running on WhatsApp, Excel and memory, converged into one system: clients, catalogue, budgets and orders with historical price snapshots, production pipeline, inventory and payments.',
+    scope: ['Clients · catalogue · budgets', 'Orders with price snapshots', 'Production pipeline · inventory', 'Roadmap: MCP + automation'],
+  },
+  {
+    num: '02', name: 'Provider portal', tag: 'Manufacturing · Procurement',
+    status: 'Scoping', live: false, image: 'provider price submission screen',
+    blurb: 'Suppliers submit and update their own pricing instead of emailing PDFs back and forth, with quote validity, lead times and change history tracked automatically.',
+    scope: ['Supplier self-service', 'Price validity + history', 'Purchase order generation'],
+  },
+  {
+    num: '03', name: 'Sales copilot', tag: 'Retail · AI integration',
+    status: 'Coming soon', live: false, image: 'MCP session transcript',
+    blurb: 'An MCP server over an existing sales database so the owner can ask for numbers, log missed sales and check stock in plain language — with confirmations before anything is written.',
+    scope: ['MCP server · scoped permissions', 'Write actions with confirmation', 'Full audit trail'],
+  },
+  {
+    num: '04', name: 'Reporting engine', tag: 'Services · Reporting & PDFs',
+    status: 'Coming soon', live: false, image: 'generated PDF report spread',
+    blurb: 'The month-end reports a team currently rebuilds by hand, generated from live data as branded PDFs — plus a forecast built on their own order history.',
+    scope: ['Report templates → PDF', 'Scheduled delivery', 'Forecasting on real history'],
+  },
+  {
+    num: '05', name: 'Your project', tag: 'Open slot · Q4 2026',
+    status: 'Available', live: false, image: 'brief · discovery notes',
+    blurb: 'We keep a small number of active builds. There is room for one more this quarter — bring the spreadsheet and the process nobody has written down.',
+    scope: ['Discovery sprint', 'Fixed scope + estimate', 'Build in stages'],
+  },
+];
+
+const active = items[0];
+---
+
+<Base title="Work — Aleph Labs" theme="dark">
+  <Header active="work" theme="dark" />
+
+  <!-- ── Work index ─────────────────────────────────────────── -->
+  <section class="index">
+    <div class="wrap index-wrap">
+      <div class="index-head">
+        <h1 class="index-h1 reveal-lines">
+          <span class="line-mask"><span class="line-inner">Work, in the open.</span></span>
+        </h1>
+        <p class="index-intro" data-reveal>Aleph Labs is new. These are the projects on the bench right now — real clients, real scopes, in progress. We'd rather show you what's being built than dress up something finished years ago somewhere else.</p>
+      </div>
+
+      <div class="index-body">
+        <div class="work-list" data-work-index="index" data-default="0" style="--dim:0.32">
+          {
+            items.map((it, i) => (
+              <div
+                class="work-row"
+                data-work-row
+                data-index={i}
+                data-active={i === 0 ? 'true' : 'false'}
+                data-item={JSON.stringify(it)}
+              >
+                <div class="row-num" data-shift>{it.num}</div>
+                <div class="row-main" data-shift>
+                  <div class="row-name">{it.name}</div>
+                  <div class="row-tag">{it.tag}</div>
+                </div>
+                <div class="row-status" data-status data-live={String(it.live)}>{it.status}</div>
+              </div>
+            ))
+          }
+          <div class="row-end"></div>
+        </div>
+
+        <div class="detail" data-work-detail="index">
+          <div class="detail-img">
+            <div class="detail-scan"></div>
+            <div class="detail-cap" data-detail-image>[ {active.image} ]</div>
+          </div>
+          <div class="detail-text">
+            <div class="detail-label" data-detail-label>{active.num} — {active.name}</div>
+            <p class="detail-blurb" data-detail-blurb>{active.blurb}</p>
+            <div class="detail-scope" data-detail-scope>
+              {active.scope.map((line) => <div>{line}</div>)}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Field note ─────────────────────────────────────────── -->
+  <section class="fieldnote">
+    <div class="wrap fn-wrap">
+      <div class="fn-head">
+        <div class="eyebrow fn-index">Field note 01 · in progress</div>
+        <h2 class="fn-title">Estudio Nuestro</h2>
+      </div>
+
+      <div class="fn-grid">
+        <div class="fn-col">
+          <div class="eyebrow fn-col-label">Before — what the studio runs on today</div>
+          <div class="fn-list">
+            <div>Budgets rebuilt by hand, each one a separate PDF with no shared catalogue.</div>
+            <div>Providers emailed one at a time, prices confirmed in WhatsApp threads.</div>
+            <div>Orders tracked by whoever remembers taking them.</div>
+            <div>Stock known approximately, by walking into the workshop.</div>
+            <div>Last year's prices gone — so last year's numbers can't be trusted.</div>
+          </div>
+        </div>
+        <div class="fn-col">
+          <div class="eyebrow fn-col-label fn-after">After — the system being built</div>
+          <div class="fn-list">
+            <div>One catalogue of products and materials, priced and versioned.</div>
+            <div>Budgets assembled in minutes, orders carrying a frozen price snapshot.</div>
+            <div>A production pipeline the whole studio can see.</div>
+            <div>Inventory and payments moving with the orders that cause them.</div>
+            <div>On the roadmap: an MCP server and automations over all of it.</div>
+          </div>
+        </div>
+        <div class="fn-media">
+          <div class="ph">
+            <div class="ph-scan"></div>
+            <div class="ph-cap">[ workshop photo · furniture in production ]</div>
+          </div>
+          <div class="fn-caption">Furniture design &amp; fabrication · Argentina<br />Started 2026 · first modules live<br />Full case study when it ships</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── CTA ────────────────────────────────────────────────── -->
+  <section class="cta-section">
+    <div class="wrap cta-wrap">
+      <h2 class="cta-h2 reveal-lines">
+        <span class="line-mask"><span class="line-inner">Your operation could be</span></span>
+        <span class="line-mask"><span class="line-inner">the next field note.</span></span>
+      </h2>
+      <div class="cta-actions" data-reveal>
+        <p class="cta-copy">We take a small number of projects at a time, on purpose. If yours is a fit, you'll hear it on the first call — and if it isn't, you'll hear that too.</p>
+        <a href={CAL} class="cta cta--citron cta-book">[ Book a call ]</a>
+        <a href="mailto:nacho@alephlabs.dev" class="cta-email">nacho@alephlabs.dev</a>
+      </div>
+    </div>
+  </section>
+
+  <Footer
+    links={[
+      { href: '/', label: 'Home' },
+      { href: '/services', label: 'Services' },
+      { href: '/about', label: 'About' },
+    ]}
+  />
+</Base>
+
+<style>
+  .wrap {
+    max-width: 1780px;
+  }
+
+  /* ---- Index ---- */
+  .index {
+    padding: clamp(40px, 5vw, 84px) clamp(18px, 3vw, 32px) clamp(56px, 7vw, 110px);
+  }
+  .index-wrap {
+    display: flex;
+    flex-direction: column;
+    gap: clamp(32px, 4vw, 60px);
+  }
+  .index-head {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 28px 56px;
+    align-items: end;
+  }
+  .index-h1 {
+    margin: 0;
+    font-size: clamp(34px, 5.6vw, 100px);
+    line-height: 0.86;
+    letter-spacing: -0.042em;
+    font-variation-settings: 'wght' 820, 'wdth' 114;
+  }
+  .index-intro {
+    margin: 0;
+    font-size: clamp(16px, 1.25vw, 20px);
+    line-height: 1.5;
+    color: var(--dim-ink);
+    max-width: 46ch;
+  }
+
+  .index-body {
+    display: flex;
+    flex-wrap: wrap;
+    gap: clamp(32px, 4vw, 72px);
+    align-items: start;
+  }
+  .work-list {
+    flex: 1 1 460px;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+  }
+  .work-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px 18px;
+    align-items: baseline;
+    padding: clamp(22px, 2.4vw, 34px) 0;
+    border-top: 1px solid var(--rule-ink);
+    cursor: pointer;
+  }
+  .row-num {
+    width: 44px;
+    font-family: var(--font-mono);
+    font-size: 12px;
+    color: var(--slate);
+  }
+  .row-main {
+    flex: 1 1 220px;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .row-name {
+    font-size: clamp(22px, 3.6vw, 56px);
+    line-height: 0.94;
+    letter-spacing: -0.04em;
+    font-variation-settings: 'wght' 800, 'wdth' 110;
+  }
+  .row-tag {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: var(--steel);
+  }
+  .row-status {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    white-space: nowrap;
+    margin-left: auto;
+  }
+  .row-end {
+    border-top: 1px solid var(--rule-ink);
+  }
+
+  /* Detail panel (sticky). */
+  .detail {
+    flex: 1 1 300px;
+    max-width: 520px;
+    position: sticky;
+    top: 110px;
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
+  }
+  .detail-img {
+    aspect-ratio: 4 / 3;
+    background: var(--graphite);
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: flex-end;
+    padding: 18px;
+  }
+  .detail-scan {
+    position: absolute;
+    inset: 0;
+    background: repeating-linear-gradient(135deg, rgba(234, 235, 229, 0.05) 0 1px, transparent 1px 10px);
+  }
+  .detail-cap {
+    position: relative;
+    font-family: var(--font-mono);
+    font-size: 10.5px;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: var(--slate);
+  }
+  .detail-text {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+  .detail-label {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: var(--citron);
+  }
+  .detail-blurb {
+    margin: 0;
+    font-size: 17px;
+    line-height: 1.5;
+    color: var(--body-ink);
+  }
+  .detail-scope {
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+    font-family: var(--font-mono);
+    font-size: 12px;
+    line-height: 1.5;
+    color: var(--steel);
+  }
+
+  /* ---- Field note (plaster) ---- */
+  .fieldnote {
+    background: var(--plaster);
+    color: var(--on-plaster);
+    padding: clamp(72px, 9vw, 140px) clamp(18px, 3vw, 32px);
+  }
+  .fn-wrap {
+    max-width: 1700px;
+    display: flex;
+    flex-direction: column;
+    gap: clamp(40px, 5vw, 76px);
+  }
+  .fn-head {
+    display: flex;
+    align-items: baseline;
+    gap: 24px;
+    flex-wrap: wrap;
+  }
+  .fn-index {
+    color: #6b7178;
+    font-size: 11px;
+    letter-spacing: 0.06em;
+  }
+  .fn-title {
+    margin: 0;
+    font-size: clamp(28px, 3.4vw, 56px);
+    line-height: 0.95;
+    letter-spacing: -0.035em;
+    font-variation-settings: 'wght' 790, 'wdth' 110;
+  }
+  .fn-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: clamp(32px, 4vw, 80px);
+    align-items: start;
+  }
+  .fn-col {
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
+  }
+  .fn-col-label {
+    color: #6b7178;
+    font-size: 11px;
+    letter-spacing: 0.05em;
+  }
+  .fn-after {
+    color: var(--ultramarine);
+  }
+  .fn-list {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    font-size: 17px;
+    line-height: 1.5;
+    color: var(--body-plaster);
+  }
+  .fn-media {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+  }
+  .ph {
+    aspect-ratio: 3 / 4;
+    background: #dcddd6;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: flex-end;
+    padding: 16px;
+  }
+  .ph-scan {
+    position: absolute;
+    inset: 0;
+    background: repeating-linear-gradient(90deg, rgba(10, 12, 15, 0.13) 0 1px, transparent 1px 8px);
+  }
+  .ph-cap {
+    position: relative;
+    font-family: var(--font-mono);
+    font-size: 10.5px;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: #4a4f55;
+  }
+  .fn-caption {
+    font-family: var(--font-mono);
+    font-size: 11.5px;
+    line-height: 1.8;
+    color: #6b7178;
+  }
+
+  /* ---- CTA (ultramarine) ---- */
+  .cta-section {
+    background: var(--ultramarine);
+    color: var(--on-ultramarine);
+    padding: clamp(76px, 9vw, 150px) clamp(18px, 3vw, 32px);
+  }
+  .cta-wrap {
+    max-width: 1560px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: clamp(32px, 4vw, 72px);
+    align-items: end;
+  }
+  .cta-h2 {
+    margin: 0;
+    font-size: clamp(30px, 5.2vw, 88px);
+    line-height: 0.88;
+    letter-spacing: -0.04em;
+    font-variation-settings: 'wght' 820, 'wdth' 114;
+    max-width: 18ch;
+  }
+  .cta-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    align-items: flex-start;
+  }
+  .cta-copy {
+    margin: 0;
+    font-size: 17.5px;
+    line-height: 1.5;
+    max-width: 44ch;
+  }
+  .cta-book {
+    color: var(--ink);
+  }
+  .cta--citron:hover {
+    background: var(--on-ultramarine);
+    color: var(--ink);
+  }
+  .cta-email {
+    font-family: var(--font-mono);
+    font-size: 12.5px;
+    letter-spacing: 0.03em;
+    color: rgba(245, 245, 240, 0.8);
+    border-bottom: 1px solid rgba(245, 245, 240, 0.35);
+    padding-bottom: 3px;
+  }
+</style>

@@ -1,0 +1,67 @@
+---
+import AlephMark from './AlephMark.astro';
+
+interface Link {
+  href: string;
+  label: string;
+}
+interface Props {
+  links: Link[];
+  showClock?: boolean;
+  /** Home shows a small spine-only mark beside the wordmark. */
+  showMark?: boolean;
+  padTop?: number;
+}
+const { links, showClock = true, showMark = false, padTop = 44 } = Astro.props;
+---
+
+<footer class="site-footer" style={`padding-top:${padTop}px`}>
+  {
+    showMark ? (
+      <div class="brand-line">
+        <AlephMark size={20} variant="on-dark" spineOnly />
+        <span>Aleph Labs — Buenos Aires, working worldwide</span>
+      </div>
+    ) : (
+      <span>Aleph Labs — Buenos Aires, working worldwide</span>
+    )
+  }
+  <div class="foot-links">
+    {links.map((l) => <a href={l.href}>{l.label}</a>)}
+    {showClock && <span class="foot-clock">BUE <span data-clock>--:--:--</span></span>}
+  </div>
+</footer>
+
+<style>
+  .site-footer {
+    background: var(--ink);
+    color: var(--slate);
+    padding-left: clamp(18px, 3vw, 32px);
+    padding-right: clamp(18px, 3vw, 32px);
+    padding-bottom: 40px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 24px 40px;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+  .brand-line {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .foot-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px 26px;
+  }
+  .site-footer a:hover {
+    color: var(--citron);
+  }
+  .foot-clock {
+    color: #35393e;
+  }
+</style>

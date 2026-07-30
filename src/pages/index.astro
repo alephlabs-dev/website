@@ -1,0 +1,759 @@
+---
+import Base from '../layouts/Base.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+
+const CAL = 'https://cal.com/alephlabs';
+
+// Work teaser rows (Home shows the first three, dimmed until hovered).
+const teaser = [
+  { num: '01', name: 'Estudio Nuestro', tag: 'Furniture studio · Operations platform', status: 'In progress' },
+  { num: '02', name: 'Provider portal', tag: 'Manufacturing · Procurement', status: 'Scoping' },
+  { num: '03', name: 'Sales copilot (MCP)', tag: 'Retail · AI integration', status: 'Coming soon' },
+];
+
+const process = [
+  { num: '01', title: 'Discovery', body: 'We find the real problem, which is often not the feature you asked for. Your workflow gets mapped before anything gets designed.' },
+  { num: '02', title: 'Scope & plan', body: "A fixed scope, in writing, before any code exists. You know what you're getting, what it costs and when it lands." },
+  { num: '03', title: 'Build in stages', body: "Working software early and often. You use it while it's being built, so course corrections cost days instead of months." },
+  { num: '04', title: 'Ship & support', body: 'Deployed, documented and supported after launch. Software you own and can keep growing — not a prototype abandoned at handoff.' },
+];
+---
+
+<Base title="Aleph Labs — The software your business actually runs on" theme="dark">
+  <Header active={null} theme="dark" />
+
+  <!-- ── Hero ───────────────────────────────────────────────── -->
+  <section class="hero">
+    <div class="spine">
+      <div class="spine-label">ℵ / BUENOS AIRES / WORLDWIDE</div>
+    </div>
+
+    <div class="hero-body">
+      <div class="hero-copy">
+        <div class="eyebrow hero-eyebrow"><span class="tick"></span>Senior software engineering · Est. 2026</div>
+        <h1 class="hero-h1 reveal-lines">
+          <span class="line-mask"><span class="line-inner">The software</span></span>
+          <span class="line-mask"><span class="line-inner">your business</span></span>
+          <span class="line-mask"><span class="line-inner">actually runs on.</span></span>
+        </h1>
+        <div class="hero-grid">
+          <p class="hero-lead" data-reveal>Custom software, internal tools and AI integration for small businesses — built on eight years of production engineering experience, not by people new to the industry riding the AI wave.</p>
+          <div class="hero-actions" data-reveal>
+            <a href={CAL} class="cta cta--citron">[ Book a call ]</a>
+            <a href="/services" class="hero-secondary">What we build →</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="aleph-stage" data-aleph>
+        <div class="aleph-scan"></div>
+        <div class="aleph-css">
+          <span class="s-spine"></span>
+          <span class="s-left"></span>
+          <span class="s-right"></span>
+        </div>
+        <div class="aleph-note">[ three.js — machined aleph, scroll-lit ]</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Positioning ────────────────────────────────────────── -->
+  <section class="surface-ultramarine positioning">
+    <div class="wrap pos-wrap">
+      <div class="eyebrow pos-index">01 / Position</div>
+      <div class="pos-body">
+        <h2 class="pos-h2 reveal-lines">
+          <span class="line-mask"><span class="line-inner">AI isn't the pitch. It's the</span></span>
+          <span class="line-mask"><span class="line-inner">last three years of the work.</span></span>
+        </h2>
+        <div class="pos-paras">
+          <p data-reveal>Eight years of shipping production software sit behind this studio — ten-person startups through 200-person organisations, in Italy, Spain and Denmark. The last three inside a company built entirely on applied AI.</p>
+          <p data-reveal>So we lead with engineering. AI gets applied where it earns its place: connected to your real data, doing real work. Not bolted on because it sells.</p>
+          <p data-reveal>Years on customer-facing products left one habit that shapes everything: understand the problem you actually have before a line of code is written.</p>
+        </div>
+        <div class="pos-stats" data-reveal>
+          <span>8 years production</span><span>3 years applied AI</span><span>3 countries</span><span>Remote worldwide</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Services ───────────────────────────────────────────── -->
+  <section class="surface-plaster services">
+    <div class="wrap services-wrap">
+      <div class="sec-head">
+        <div class="eyebrow muted-plaster">02 / Services</div>
+        <h2 class="sec-title">Two things, done properly</h2>
+      </div>
+
+      <div class="services-cols">
+        <div class="service" data-reveal>
+          <div class="service-top">
+            <div class="service-num">01</div>
+            <div>
+              <div class="service-name">Build</div>
+              <div class="eyebrow muted-plaster service-sub">Custom software &amp; internal tools</div>
+            </div>
+          </div>
+          <p class="service-lead">The operational software your business runs on, built around how you actually work — not assembled from a generic template you then have to work around.</p>
+          <div class="service-list">
+            <div>Client &amp; provider management</div>
+            <div>Inventory, orders, production pipelines</div>
+            <div>Client and provider portals</div>
+            <div>Custom reporting, auto-generated PDFs</div>
+            <div>Integrations with the tools you already pay for</div>
+            <div class="muted-plaster">A sample, not a boundary — yours is shaped in discovery</div>
+          </div>
+        </div>
+
+        <div class="service" data-reveal>
+          <div class="service-top">
+            <div class="service-num">02</div>
+            <div>
+              <div class="service-name">Connect</div>
+              <div class="eyebrow muted-plaster service-sub">AI integration &amp; automation</div>
+            </div>
+          </div>
+          <p class="service-lead">We wire AI directly into the systems you already run, so it can act on your data — not just talk about it.</p>
+          <div class="terminal">
+            <div class="term-label">MCP server · your data, in plain language</div>
+            <div><span class="prompt">›</span> give me the last five budgets</div>
+            <div class="term-out">→ 5 rows · ARS 18.4M · Mar–Jul 2026</div>
+            <div><span class="prompt">›</span> I forgot to log friday's sale, fix it</div>
+            <div class="term-out">→ order #1182 created · inventory adjusted</div>
+          </div>
+          <div class="service-list">
+            <div>MCP servers over your own systems</div>
+            <div>Workflow automation (n8n-style)</div>
+            <div>AI-assisted reporting &amp; forecasting</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Process (pinned horizontal sequence on desktop) ────── -->
+  <section class="process" data-process>
+    <div class="process-inner">
+      <div class="sec-head">
+        <div class="eyebrow muted-ink">03 / Process</div>
+        <h2 class="sec-title">Four stages. No surprises in any of them.</h2>
+      </div>
+
+      <div class="process-track" data-process-track>
+        <div class="process-rule" data-process-rule></div>
+        {
+          process.map((s) => (
+            <div class="stage">
+              <div class="stage-num">{s.num}</div>
+              <div class="stage-title">{s.title}</div>
+              <p class="stage-body">{s.body}</p>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Work teaser ────────────────────────────────────────── -->
+  <section class="surface-graphite work-teaser">
+    <div class="wrap">
+      <div class="teaser-head">
+        <div class="sec-head">
+          <div class="eyebrow muted-ink">04 / Work</div>
+          <h2 class="sec-title">In the workshop right now</h2>
+        </div>
+        <a href="/work" class="all-work">All work →</a>
+      </div>
+
+      <div class="work-list" data-work-index="teaser" data-default="0" style="--dim:0.34">
+        {
+          teaser.map((row, i) => (
+            <div class="work-row" data-work-row data-index={i} data-active={i === 0 ? 'true' : 'false'}>
+              <div class="row-num">{row.num}</div>
+              <div class="row-main">
+                <span class="row-name">{row.name}</span>
+                <span class="row-tag">{row.tag}</span>
+              </div>
+              <div class="row-status">{row.status}</div>
+            </div>
+          ))
+        }
+        <div class="row-end"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── CTA ────────────────────────────────────────────────── -->
+  <section class="surface-citron cta-section">
+    <div class="wrap cta-wrap">
+      <h2 class="cta-h2 reveal-lines">
+        <span class="line-mask"><span class="line-inner">Tell us what's broken.</span></span>
+        <span class="line-mask"><span class="line-inner">We'll tell you if we can fix it.</span></span>
+      </h2>
+      <div class="cta-grid">
+        <p class="cta-copy" data-reveal>A 30-minute call, no pitch deck. Bring the spreadsheet, the WhatsApp thread, the process nobody has written down. You'll leave knowing whether software is the answer.</p>
+        <div class="cta-actions" data-reveal>
+          <a href={CAL} class="cta cta-on-citron">[ Book a call ]</a>
+          <a href="mailto:nacho@alephlabs.dev" class="cta-email">nacho@alephlabs.dev</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <Footer
+    links={[
+      { href: '/services', label: 'Services' },
+      { href: '/work', label: 'Work' },
+      { href: '/about', label: 'About' },
+      { href: 'mailto:nacho@alephlabs.dev', label: 'nacho@alephlabs.dev' },
+    ]}
+    showMark
+  />
+
+  <script>
+    import { initAleph } from '../scripts/aleph';
+    initAleph();
+  </script>
+</Base>
+
+<style>
+  /* Shared helpers used across sections on this page */
+  .wrap {
+    max-width: 1780px;
+  }
+  .eyebrow.muted-plaster,
+  .muted-plaster {
+    color: #6b7178;
+  }
+  .eyebrow.muted-ink,
+  .muted-ink {
+    color: var(--steel);
+  }
+  .sec-head {
+    display: flex;
+    align-items: baseline;
+    gap: 24px;
+    flex-wrap: wrap;
+  }
+  .sec-title {
+    margin: 0;
+    font-size: clamp(26px, 3vw, 46px);
+    line-height: 1;
+    letter-spacing: -0.03em;
+    font-variation-settings: 'wght' 750, 'wdth' 105;
+  }
+
+  /* ---- Hero ---- */
+  .hero {
+    position: relative;
+    min-height: 92vh;
+    padding: clamp(40px, 6vw, 96px) clamp(18px, 3vw, 32px) clamp(28px, 3vw, 44px);
+    display: grid;
+    grid-template-columns: 1px minmax(0, 1fr);
+    gap: clamp(20px, 4vw, 56px);
+  }
+  .spine-label {
+    position: absolute;
+    top: 34%;
+    left: 14px;
+    font-family: var(--font-mono);
+    font-size: 10.5px;
+    letter-spacing: 0.14em;
+    color: var(--slate);
+    white-space: nowrap;
+    transform: rotate(90deg);
+    transform-origin: left center;
+  }
+  .hero-body {
+    display: flex;
+    flex-wrap: wrap;
+    gap: clamp(24px, 4vw, 64px);
+    align-items: center;
+  }
+  .hero-copy {
+    flex: 1 1 520px;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: clamp(28px, 3.4vw, 52px);
+  }
+  .hero-eyebrow {
+    color: var(--steel);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .tick {
+    width: 6px;
+    height: 6px;
+    background: var(--citron);
+    display: block;
+  }
+  .hero-h1 {
+    margin: 0;
+    font-size: clamp(38px, 7.6vw, 132px);
+    line-height: 0.85;
+    letter-spacing: -0.04em;
+    font-variation-settings: 'wght' 820, 'wdth' 114;
+  }
+  .hero-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 28px 48px;
+    max-width: 900px;
+  }
+  .hero-lead {
+    margin: 0;
+    font-size: clamp(17px, 1.35vw, 21px);
+    line-height: 1.45;
+    color: var(--body-ink);
+  }
+  .hero-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    align-items: flex-start;
+  }
+  .cta--citron:hover {
+    background: var(--on-ink);
+    color: var(--ink);
+  }
+  .hero-secondary {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    letter-spacing: 0.04em;
+    color: var(--steel);
+    text-transform: uppercase;
+    border-bottom: 1px solid #35393e;
+    padding-bottom: 3px;
+  }
+
+  /* Aleph stage */
+  .aleph-stage {
+    flex: 1 1 300px;
+    max-width: 560px;
+    aspect-ratio: 1;
+    background: radial-gradient(110% 90% at 32% 18%, #262b33 0%, #0f1218 58%, #0a0c0f 100%);
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 300px;
+  }
+  .aleph-scan {
+    position: absolute;
+    inset: 0;
+    background: repeating-linear-gradient(135deg, rgba(234, 235, 229, 0.045) 0 1px, transparent 1px 10px);
+  }
+  .aleph-css {
+    position: relative;
+    width: 46%;
+    aspect-ratio: 1;
+    filter: drop-shadow(0 28px 40px rgba(0, 0, 0, 0.55));
+  }
+  .aleph-css .s-spine {
+    position: absolute;
+    left: 50%;
+    top: 6%;
+    width: 14%;
+    height: 88%;
+    background: linear-gradient(160deg, #eaebe5 0%, #9aa0a8 42%, #4c525a 100%);
+    transform: translateX(-50%) rotate(24deg);
+  }
+  .aleph-css .s-left {
+    position: absolute;
+    left: 6%;
+    top: 13%;
+    width: 11%;
+    height: 41%;
+    background: linear-gradient(160deg, #6e77ff 0%, #2229de 55%, #141a9c 100%);
+    transform: rotate(-38deg);
+  }
+  .aleph-css .s-right {
+    position: absolute;
+    right: 6%;
+    bottom: 13%;
+    width: 11%;
+    height: 41%;
+    background: linear-gradient(160deg, #6e77ff 0%, #2229de 55%, #141a9c 100%);
+    transform: rotate(-38deg);
+  }
+  .aleph-note {
+    position: absolute;
+    left: 16px;
+    bottom: 14px;
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.06em;
+    color: var(--slate);
+    text-transform: uppercase;
+  }
+  /* The CSS stand-in crossfades out once the three.js canvas has a frame. */
+  .aleph-css {
+    transition: opacity 0.6s ease;
+  }
+  .aleph-stage[data-aleph-ready] .aleph-css {
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  /* ---- Positioning ---- */
+  .surface-ultramarine {
+    background: var(--ultramarine);
+    color: var(--on-ultramarine);
+  }
+  .positioning {
+    padding: clamp(76px, 9vw, 150px) clamp(18px, 3vw, 32px);
+  }
+  .pos-wrap {
+    max-width: 1560px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: clamp(24px, 4vw, 80px);
+    align-items: start;
+  }
+  .pos-index {
+    opacity: 0.72;
+    padding-top: 14px;
+    flex: 0 1 150px;
+  }
+  .pos-body {
+    flex: 1 1 460px;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: clamp(32px, 4vw, 60px);
+  }
+  .pos-h2 {
+    margin: 0;
+    font-size: clamp(32px, 5.2vw, 90px);
+    line-height: 0.94;
+    letter-spacing: -0.035em;
+    font-variation-settings: 'wght' 800, 'wdth' 110;
+    max-width: 21ch;
+  }
+  .pos-paras {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 36px 56px;
+    max-width: 1300px;
+  }
+  .pos-paras p {
+    margin: 0;
+    font-size: 17.5px;
+    line-height: 1.5;
+  }
+  .pos-stats {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px 36px;
+    font-family: var(--font-mono);
+    font-size: 11.5px;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    opacity: 0.8;
+    padding-top: 8px;
+  }
+
+  /* ---- Services ---- */
+  .surface-plaster {
+    background: var(--plaster);
+    color: var(--on-plaster);
+  }
+  .services {
+    padding: clamp(76px, 9vw, 140px) clamp(18px, 3vw, 32px);
+  }
+  .services-wrap {
+    max-width: 1560px;
+    display: flex;
+    flex-direction: column;
+    gap: clamp(48px, 6vw, 96px);
+  }
+  .services-cols {
+    display: flex;
+    flex-wrap: wrap;
+    gap: clamp(40px, 5vw, 90px);
+  }
+  .service {
+    flex: 1 1 380px;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+  .service-top {
+    display: flex;
+    align-items: flex-start;
+    gap: 20px;
+  }
+  .service-num {
+    font-size: clamp(58px, 7vw, 112px);
+    line-height: 0.8;
+    letter-spacing: -0.05em;
+    font-variation-settings: 'wght' 830, 'wdth' 118;
+    color: var(--ultramarine);
+  }
+  .service-name {
+    font-size: clamp(28px, 3.2vw, 48px);
+    line-height: 0.95;
+    letter-spacing: -0.035em;
+    font-variation-settings: 'wght' 800, 'wdth' 112;
+  }
+  .service-sub {
+    margin-top: 8px;
+  }
+  .service-top > div:last-child {
+    padding-top: 6px;
+  }
+  .service-lead {
+    margin: 0;
+    font-size: 18px;
+    line-height: 1.5;
+    color: var(--body-plaster);
+    max-width: 48ch;
+  }
+  .service-list {
+    display: flex;
+    flex-direction: column;
+    gap: 9px;
+    font-family: var(--font-mono);
+    font-size: 12.5px;
+    line-height: 1.5;
+    color: var(--body-plaster);
+  }
+  .terminal {
+    background: var(--ink);
+    padding: 22px 22px 24px;
+    font-family: var(--font-mono);
+    font-size: 12px;
+    line-height: 2;
+    color: var(--body-ink);
+  }
+  .term-label {
+    color: var(--slate);
+    font-size: 10.5px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+  .prompt {
+    color: var(--citron);
+  }
+  .term-out {
+    color: var(--steel);
+  }
+
+  /* ---- Process ---- */
+  .process {
+    background: var(--ink);
+    color: var(--on-ink);
+    padding: clamp(76px, 9vw, 140px) clamp(18px, 3vw, 32px);
+    overflow: hidden;
+  }
+  .process-inner {
+    max-width: 1700px;
+    display: flex;
+    flex-direction: column;
+    gap: clamp(44px, 5vw, 80px);
+  }
+  .process-track {
+    display: flex;
+    gap: clamp(28px, 3vw, 52px);
+    position: relative;
+    padding-top: 24px;
+  }
+  .process-rule {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background: linear-gradient(90deg, var(--ultramarine) 70%, var(--citron));
+    transform-origin: left center;
+  }
+  .stage {
+    flex: 0 0 clamp(280px, 40vw, 460px);
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  .stage-num {
+    font-size: clamp(52px, 8vw, 128px);
+    line-height: 0.78;
+    letter-spacing: -0.055em;
+    font-variation-settings: 'wght' 840, 'wdth' 120;
+  }
+  .stage-title {
+    font-size: clamp(21px, 2vw, 30px);
+    line-height: 1;
+    letter-spacing: -0.03em;
+    font-variation-settings: 'wght' 780, 'wdth' 108;
+  }
+  .stage-body {
+    margin: 0;
+    font-size: 16px;
+    line-height: 1.55;
+    color: var(--dim-ink);
+  }
+
+  @media (max-width: 899px) {
+    .process-track {
+      flex-direction: column;
+      padding-top: 0;
+      padding-left: 24px;
+    }
+    .process-rule {
+      top: 0;
+      left: 0;
+      width: 3px;
+      height: 100%;
+      transform-origin: top center;
+      background: linear-gradient(180deg, var(--ultramarine) 70%, var(--citron));
+    }
+    .stage {
+      flex: 1 1 auto;
+    }
+  }
+
+  /* ---- Work teaser ---- */
+  .surface-graphite {
+    background: var(--graphite);
+    color: var(--on-ink);
+  }
+  .work-teaser {
+    padding: clamp(76px, 9vw, 130px) clamp(18px, 3vw, 32px);
+  }
+  .work-teaser .wrap {
+    max-width: 1560px;
+    display: flex;
+    flex-direction: column;
+    gap: clamp(36px, 4vw, 64px);
+  }
+  .teaser-head {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 24px;
+    flex-wrap: wrap;
+  }
+  .all-work {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--steel);
+    border-bottom: 1px solid #35393e;
+    padding-bottom: 3px;
+  }
+  .work-list {
+    display: flex;
+    flex-direction: column;
+  }
+  .work-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px 18px;
+    align-items: center;
+    padding: 26px 0;
+    border-top: 1px solid var(--rule-ink);
+  }
+  .row-num {
+    width: 40px;
+    font-family: var(--font-mono);
+    font-size: 12px;
+    color: var(--slate);
+  }
+  .row-main {
+    flex: 1 1 200px;
+    min-width: 0;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 8px 20px;
+  }
+  .row-name {
+    font-size: clamp(24px, 3.2vw, 44px);
+    line-height: 1;
+    letter-spacing: -0.035em;
+    font-variation-settings: 'wght' 780, 'wdth' 108;
+  }
+  .row-tag {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: var(--steel);
+  }
+  .row-status {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: var(--citron);
+    margin-left: auto;
+  }
+  .row-end {
+    border-top: 1px solid var(--rule-ink);
+  }
+
+  /* ---- CTA ---- */
+  .surface-citron {
+    background: var(--citron);
+    color: var(--ink);
+  }
+  .cta-section {
+    padding: clamp(80px, 10vw, 160px) clamp(18px, 3vw, 32px);
+  }
+  .cta-wrap {
+    max-width: 1560px;
+    display: flex;
+    flex-direction: column;
+    gap: clamp(36px, 4vw, 60px);
+  }
+  .cta-h2 {
+    margin: 0;
+    font-size: clamp(32px, 7.4vw, 128px);
+    line-height: 0.86;
+    letter-spacing: -0.045em;
+    font-variation-settings: 'wght' 830, 'wdth' 116;
+    max-width: 17ch;
+  }
+  .cta-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 32px 56px;
+    max-width: 1200px;
+    align-items: end;
+  }
+  .cta-copy {
+    margin: 0;
+    font-size: 18.5px;
+    line-height: 1.5;
+    color: #2e340c;
+  }
+  .cta-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    align-items: flex-start;
+  }
+  .cta-on-citron {
+    color: var(--citron);
+    background: var(--ink);
+  }
+  .cta-on-citron:hover {
+    background: var(--ultramarine);
+    color: var(--on-ultramarine);
+  }
+  .cta-email {
+    font-family: var(--font-mono);
+    font-size: 12.5px;
+    letter-spacing: 0.03em;
+    color: #2e340c;
+    border-bottom: 1px solid rgba(46, 52, 12, 0.4);
+    padding-bottom: 3px;
+  }
+</style>

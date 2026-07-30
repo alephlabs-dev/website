@@ -1,0 +1,253 @@
+---
+import AlephMark from './AlephMark.astro';
+
+interface Props {
+  active?: 'services' | 'work' | 'about' | null;
+  theme?: 'dark' | 'light';
+}
+const { active = null, theme = 'dark' } = Astro.props;
+
+const CAL = 'https://cal.com/alephlabs';
+const links = [
+  { href: '/services', num: '01', label: 'Services', key: 'services' },
+  { href: '/work', num: '02', label: 'Work', key: 'work' },
+  { href: '/about', num: '03', label: 'About', key: 'about' },
+] as const;
+
+const markVariant = theme === 'dark' ? 'on-dark' : 'on-plaster';
+---
+
+<header class:list={['site-header', theme]}>
+  <a class="brand" href="/">
+    <AlephMark size={26} variant={markVariant} />
+    <span class="brand-word">ALEPH LABS</span>
+  </a>
+
+  <nav class="nav-row" aria-label="Primary">
+    {
+      links.map((l) => (
+        <a href={l.href} class:list={['nav-link', { active: active === l.key }]}>
+          <span class="num">{l.num}</span>
+          {l.label}
+        </a>
+      ))
+    }
+    <span class="clock">BUE <span data-clock>--:--:--</span></span>
+    <a href={CAL} class="book">[ Book a call ]</a>
+  </nav>
+
+  <button
+    class="nav-btn"
+    data-menu-toggle
+    aria-expanded="false"
+    aria-controls="mobile-menu"
+    aria-label="Open menu">[ menu ]</button>
+</header>
+
+<div class="menu" id="mobile-menu" data-menu data-open="false">
+  <div class="menu-top">
+    <span class="brand-word">ALEPH LABS</span>
+    <button class="menu-close" data-menu-close aria-label="Close menu">[ close ]</button>
+  </div>
+  <a class="menu-link" href="/"><span>00</span>Home</a>
+  <a class="menu-link" href="/services"><span>01</span>Services</a>
+  <a class="menu-link" href="/work"><span>02</span>Work</a>
+  <a class="menu-link last" href="/about"><span>03</span>About</a>
+  <a class="menu-book" href={CAL}>[ Book a call ]</a>
+  <div class="menu-foot">
+    <a href="mailto:nacho@alephlabs.dev">nacho@alephlabs.dev</a>
+    <span>BUE <span data-clock>--:--:--</span></span>
+  </div>
+</div>
+
+<style>
+  .site-header {
+    position: sticky;
+    top: 0;
+    z-index: 20;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    padding: 14px clamp(18px, 3vw, 32px);
+    backdrop-filter: blur(14px);
+  }
+  .site-header.dark {
+    background: rgba(10, 12, 15, 0.82);
+  }
+  .site-header.light {
+    background: rgba(234, 235, 229, 0.85);
+  }
+
+  .brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .brand-word {
+    font-size: 17px;
+    letter-spacing: -0.02em;
+    font-variation-settings: 'wght' 780, 'wdth' 100;
+  }
+
+  .nav-row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 16px 24px;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+  .dark .nav-row {
+    color: var(--steel);
+  }
+  .light .nav-row {
+    color: #6b7178;
+  }
+
+  .nav-link {
+    display: flex;
+    gap: 7px;
+  }
+  .nav-link .num {
+    color: var(--slate);
+  }
+  .light .nav-link .num {
+    color: #a0a5ab;
+  }
+  .dark .nav-link.active {
+    color: var(--on-ink);
+  }
+  .dark .nav-link.active .num {
+    color: var(--citron);
+  }
+  .light .nav-link.active {
+    color: var(--on-plaster);
+  }
+  .light .nav-link.active .num {
+    color: var(--ultramarine);
+  }
+
+  .clock {
+    color: var(--slate);
+    letter-spacing: 0.02em;
+  }
+  .light .clock {
+    color: #a0a5ab;
+  }
+
+  .dark .book {
+    color: var(--citron);
+    letter-spacing: 0.02em;
+  }
+  .light .book {
+    color: var(--on-plaster);
+    background: var(--citron);
+    padding: 9px 13px;
+    letter-spacing: 0.02em;
+  }
+
+  .nav-btn {
+    display: none;
+    align-items: center;
+    gap: 8px;
+    background: none;
+    border: none;
+    padding: 12px 2px;
+    font-family: var(--font-mono);
+    font-size: 12px;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: inherit;
+    cursor: pointer;
+  }
+
+  @media (max-width: 779px) {
+    .nav-row {
+      display: none;
+    }
+    .nav-btn {
+      display: flex;
+    }
+  }
+
+  /* ---- Fullscreen mobile menu ---- */
+  .menu {
+    position: fixed;
+    inset: 0;
+    z-index: 40;
+    background: var(--ink);
+    color: var(--on-ink);
+    padding: 18px 20px 28px;
+    display: none;
+    flex-direction: column;
+    gap: 6px;
+  }
+  .menu[data-open='true'] {
+    display: flex;
+  }
+  .menu-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    padding-bottom: 18px;
+  }
+  .menu-close {
+    background: none;
+    border: none;
+    padding: 12px 2px;
+    font-family: var(--font-mono);
+    font-size: 12px;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--citron);
+    cursor: pointer;
+  }
+  .menu-link {
+    display: flex;
+    align-items: baseline;
+    gap: 14px;
+    padding: 18px 0;
+    border-top: 1px solid var(--rule-ink);
+    font-size: clamp(28px, 9vw, 40px);
+    line-height: 1;
+    letter-spacing: -0.035em;
+    font-variation-settings: 'wght' 780, 'wdth' 108;
+  }
+  .menu-link.last {
+    border-bottom: 1px solid var(--rule-ink);
+  }
+  .menu-link span {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--slate);
+  }
+  .menu-book {
+    margin-top: auto;
+    background: var(--citron);
+    color: var(--ink);
+    padding: 20px;
+    text-align: center;
+    font-family: var(--font-mono);
+    font-size: 14px;
+    letter-spacing: 0.04em;
+  }
+  .menu-foot {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 8px 20px;
+    padding-top: 14px;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--slate);
+  }
+  .menu-foot a {
+    color: var(--steel);
+  }
+</style>

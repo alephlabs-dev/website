@@ -1,0 +1,43 @@
+---
+/**
+ * The aleph, reduced to three straight strokes: one spine at 24deg,
+ * two counter-strokes at -38deg. Counter-strokes are always ultramarine
+ * and are never re-tinted. Stroke widths scale from the 26px nav reference.
+ */
+interface Props {
+  size?: number;
+  /** Spine colour: light on ink surfaces, ink on plaster surfaces. */
+  variant?: 'on-dark' | 'on-plaster';
+  /** At small sizes the counter-strokes drop and only the spine remains. */
+  spineOnly?: boolean;
+  class?: string;
+}
+
+const { size = 26, variant = 'on-dark', spineOnly = false, class: className } = Astro.props;
+
+const spineColor = variant === 'on-dark' ? 'var(--on-ink)' : 'var(--on-plaster)';
+const spineW = Math.max(3, Math.round((size * 5) / 26));
+const counterW = Math.max(2, Math.round((size * 4) / 26));
+---
+
+<span
+  class:list={['aleph', className]}
+  style={`position:relative;width:${size}px;height:${size}px;flex:none;display:inline-block`}
+  aria-hidden="true"
+>
+  <span
+    style={`position:absolute;left:50%;top:6%;width:${spineW}px;height:88%;background:${spineColor};transform:translateX(-50%) rotate(24deg)`}
+  ></span>
+  {
+    !spineOnly && (
+      <>
+        <span
+          style={`position:absolute;left:8%;top:14%;width:${counterW}px;height:40%;background:var(--ultramarine);transform:rotate(-38deg)`}
+        />
+        <span
+          style={`position:absolute;right:8%;bottom:14%;width:${counterW}px;height:40%;background:var(--ultramarine);transform:rotate(-38deg)`}
+        />
+      </>
+    )
+  }
+</span>
