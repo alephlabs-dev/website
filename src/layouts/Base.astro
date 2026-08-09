@@ -1,5 +1,6 @@
 ---
 import '../styles/global.css';
+import Analytics from '@vercel/analytics/astro';
 
 interface Props {
   title: string;
@@ -44,6 +45,7 @@ const {
     <slot />
 
     {theme === 'dark' && <div class="grain"></div>}
+    <Analytics />
 
     <script>
       import { startClock } from '../scripts/clock';
